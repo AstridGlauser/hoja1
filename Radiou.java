@@ -3,8 +3,8 @@ public class Radiou implements Radio {
     
     private boolean encendida = false;
     private boolean tipoSenal =true;
-    private float AMactual ;
-    private float FMactual;
+    private float AMactual=530 ;
+    private float FMactual=87.9;
     private String[] emisorasGuardadas=new String[12];
   
 
@@ -60,14 +60,43 @@ public class Radiou implements Radio {
     }
     @Override
     public void subirEmisora(){
-        AMactual += 10;
+        if(tipoSenal){
+            if(AMactual==1610){
+                AMactual=530;
+            }
+            else{
+                AMactual += 10;
+        }
+     
         FMactual += 0.2;
         
     }
+    else{
+    
+        if(FMactual==107.9){
+            FMactual=87.9;
+        }
+      else{
+        FMactual += 0.2; 
+      }
+    }
+}
     @Override
     public void bajarEmisora(){
-        AMactual -= 10;
-        FMactual -= 0.2;
+        if(tipoSenal){
+            if(AMactual!=530){
+                AMactual -= 10;
+
+            }
+   
+        }
+        else{
+            if(FMactual!=87.9){
+                FMactual -= 0.2;
+            }
+        
+       
+        }
     }
     
     @Override
