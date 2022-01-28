@@ -4,7 +4,7 @@ public class Radiou implements Radio {
     private boolean encendida = false;
     private boolean tipoSenal =true;
     private float AMactual=530 ;
-    private float FMactual=87.9;
+    private float FMactual=(float) 87.9;
     private String[] emisorasGuardadas=new String[12];
   
 
@@ -36,22 +36,28 @@ public class Radiou implements Radio {
     
 }
     public String seleccionarEmisoraActual(int numBoton){
-        String message = "Sintonizando ";
-        float emisora = Float.valueOf(emisorasGuardadas[numBoton]);
+       String message = "Sintonizando ";
+       String emisoraString = emisorasGuardadas[numBoton]; 
+        if(emisoraString != null){
+            float emisora = Float.valueOf(emisorasGuardadas[numBoton]); 
         if(emisora >=540){//valor minimo de AM
             AMactual = (int) emisora;
             this.tipoSenal = true;
             message += emisora + "AM";
-        }else{
+        }else if(emisora >= 87.9){
             FMactual = emisora;
             this.tipoSenal = false;
             message += emisora + "FM";
         }
+        }
+        
+        else{
+            message = "no hay guardado";
+        }
         return  message ;
     }
-    public String  cambiarSenal(boolean tipoSenal){
-        return null;
-}
+    
+
     
     @Override
     public boolean getTipoSenal(){
@@ -74,7 +80,7 @@ public class Radiou implements Radio {
     else{
     
         if(FMactual==107.9){
-            FMactual=87.9;
+            FMactual=(float)87.9;
         }
       else{
         FMactual += 0.2; 
@@ -113,15 +119,18 @@ public class Radiou implements Radio {
     @Override
     public String seleccionarEmisoraGuardada(int numBoton) {
         String message = "Sintonizando ";
-        float emisora = Float.valueOf(emisorasGuardadas[numBoton]);
+        float emisora = Float.valueOf(emisorasGuardadas[numBoton]); 
         if(emisora >=540){//valor minimo de AM
             AMactual = (int) emisora;
             this.tipoSenal = true;
             message += emisora + "AM";
-        }else{
+        }else if(emisora >= 87.9){
             FMactual = emisora;
             this.tipoSenal = false;
             message += emisora + "FM";
+        }
+        else{
+            message = "no hay guardado";
         }
         return  message ;
     }
@@ -129,6 +138,15 @@ public class Radiou implements Radio {
     @Override
     public String cambiarSenal(Boolean opciuon) {
         this.tipoSenal = opciuon;
+        String message = "Se ha cambiado a ";
+        if (tipoSenal) {
+            message += "AM";
+            
+        }else{
+             message += "FM";
+        }
+        
+        return message;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Display {
         return scan.nextInt();
     }
     public int radioSelection(){//receiver para la eleccion
-        System.out.println("Seleccione un slot del 1 al  12 de frecuencias guardadas");
+        System.out.println("Seleccione un slot del 1 al  12");
         return scan.nextInt();
     }
     
