@@ -68,7 +68,7 @@ public class Radiou implements Radio {
                 AMactual += 10;
         }
      
-        FMactual += 0.2;
+       
         
     }
     else{
