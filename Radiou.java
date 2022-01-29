@@ -26,13 +26,17 @@ public class Radiou implements Radio {
     @Override
     public String guardarEmisoraActual(int numBoton){
         String emisora = "";
+        String sen="";
         if(tipoSenal){
             emisora = String.valueOf(this.AMactual);
+            sen="AM";
         }else{
             emisora = String.valueOf(this.FMactual);
+            sen="FM";
         }
         emisorasGuardadas[numBoton] = emisora;
-    return null;
+   
+    return "Sintonizando " + emisora + " " +sen;
     
 }
     public String seleccionarEmisoraActual(int numBoton){
