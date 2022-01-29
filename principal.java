@@ -1,10 +1,15 @@
+/*
+ Arturo Heberto Argueta Avila 21527
+ Astrid Glauser 21299
 
+Clase controladora
+*/
 public class principal {
     private static Display view = new Display();
     private static Radiou radio = new Radiou();
     public static void main(String args[]){
         do{
-            switch(view.mainmenu()){
+            switch(view.mainmenu()){//mostrar el menu
                 case 1 ->{//on off
                     radio.encenderApagar();
                 }
@@ -36,7 +41,7 @@ public class principal {
                 case 5 ->{//guardar actual
                     if(radio.comprobarEncendido()){
                         int boton = view.radioSelection();
-                    while(boton > 12 || boton < 1){
+                    while(boton > 12 || boton < 1){//verificar que sea valido el boton
                         view.printer("slot invalido");
                         boton = view.radioSelection();
                     }
@@ -51,7 +56,7 @@ public class principal {
                 case 6 ->{//cargar frecuencia
                     if(radio.comprobarEncendido()){
                         int boton = view.radioSelection();
-                    while(boton > 12 || boton < 1){
+                    while(boton > 12 || boton < 1){//verificar que sea valido el boton
                         view.printer("slot invalido");
                         boton = view.radioSelection();
                     }

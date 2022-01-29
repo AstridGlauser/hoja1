@@ -1,4 +1,9 @@
-
+/*
+ Arturo Heberto Argueta Avila 21527
+ Astrid Glauser 21299
+  
+Clase referente al radio
+*/
 public class Radiou implements Radio {
     
     private boolean encendida = false;
@@ -9,7 +14,7 @@ public class Radiou implements Radio {
   
 
     @Override
-    public void encenderApagar(){
+    public void encenderApagar(){//encender y apagar el radio, 
         if(encendida){
             encendida=false;
         }else{
@@ -18,28 +23,24 @@ public class Radiou implements Radio {
         
     }
     @Override
-    public boolean  comprobarEncendido(){
+    public boolean  comprobarEncendido(){//devuelve el booleano del estado ; true es encendida
         return this.encendida;
         
     }
     
     @Override
-    public String guardarEmisoraActual(int numBoton){
+    public String guardarEmisoraActual(int numBoton){//recibe la posicion para guardar la emisora actual
         String emisora = "";
-        String sen="";
         if(tipoSenal){
             emisora = String.valueOf(this.AMactual);
-            sen="AM";
         }else{
             emisora = String.valueOf(this.FMactual);
-            sen="FM";
         }
         emisorasGuardadas[numBoton] = emisora;
-   
-    return "Sintonizando " + emisora + " " +sen;
+    return ("Emisora Guardada con exito");
     
 }
-    public String seleccionarEmisoraActual(int numBoton){
+    public String seleccionarEmisoraActual(int numBoton){//seleccionar una emisora guardada y colocarla como actual, en caso de no haber indica que no hay freceuncia guardada
        String message = "Sintonizando ";
        String emisoraString = emisorasGuardadas[numBoton]; 
         if(emisoraString != null){
@@ -64,12 +65,12 @@ public class Radiou implements Radio {
 
     
     @Override
-    public boolean getTipoSenal(){
+    public boolean getTipoSenal(){//devuelve el tipo de frecuencia actual, true es am
         return this.tipoSenal;
         
     }
     @Override
-    public void subirEmisora(){
+    public void subirEmisora(){//aumentrar la emisora
         if(tipoSenal){
             if(AMactual==1610){
                 AMactual=530;
@@ -91,9 +92,9 @@ public class Radiou implements Radio {
       }
     }
 }
-   @Override
-    public void bajarEmisora(){
-        if(tipoSenal){
+    @Override
+    public void bajarEmisora(){//retroceder emisora
+         if(tipoSenal){
             if(AMactual!=530){
                 AMactual -= 10;
 
@@ -113,8 +114,9 @@ public class Radiou implements Radio {
        
         }
     }
+    
     @Override
-    public float getEmisoraActual(){
+    public float getEmisoraActual(){//devuelve la emisora actual sintonizada
         float frecuencia = 0;
         if(tipoSenal){//si es am el modo devuelve la am, de lo contratio devuelve fm
             frecuencia = AMactual;
@@ -125,7 +127,7 @@ public class Radiou implements Radio {
     }
 
     @Override
-    public String seleccionarEmisoraGuardada(int numBoton) {
+    public String seleccionarEmisoraGuardada(int numBoton) {//seleccionar una emisora guardada y colocarla como actual, en caso de no haber indica que no hay freceuncia guardada
         String message = "Sintonizando ";
         float emisora = Float.valueOf(emisorasGuardadas[numBoton]); 
         if(emisora >=540){//valor minimo de AM
@@ -144,7 +146,7 @@ public class Radiou implements Radio {
     }
 
     @Override
-    public String cambiarSenal(Boolean opciuon) {
+    public String cambiarSenal(Boolean opciuon) {//cambia de senal, recie el boolean del tipo a cambiar; true es am
         this.tipoSenal = opciuon;
         String message = "Se ha cambiado a ";
         if (tipoSenal) {
@@ -155,11 +157,6 @@ public class Radiou implements Radio {
         }
         
         return message;
-    }
-
-    @Override
-    public boolean comprobarEncendida() {
-        return this.encendida;
     }
 
 }

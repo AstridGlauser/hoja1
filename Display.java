@@ -1,4 +1,10 @@
+/*
+ Arturo Heberto Argueta Avila 21527
+ Astrid Glauser 21299
 
+clase de viusta del modelo
+
+*/
 import java.util.Scanner;
 
 public class Display {
@@ -18,7 +24,7 @@ public class Display {
         return scan.nextInt();
     }
     
-    public void printer(String m){
+    public void printer(String m){//mostrar en la consola los mensajes
         System.out.println(m);
     }
     
