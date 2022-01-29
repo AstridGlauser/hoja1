@@ -91,24 +91,28 @@ public class Radiou implements Radio {
       }
     }
 }
-    @Override
+   @Override
     public void bajarEmisora(){
         if(tipoSenal){
             if(AMactual!=530){
                 AMactual -= 10;
 
+            }else{
+                AMactual=1610;
             }
+   
    
         }
         else{
             if(FMactual!=87.9){
                 FMactual -= 0.2;
+            }else{
+                 FMactual=(float)107.9;
             }
         
        
         }
     }
-    
     @Override
     public float getEmisoraActual(){
         float frecuencia = 0;
