@@ -1,3 +1,6 @@
+
+import java.text.DecimalFormat;
+
 /*
  Arturo Heberto Argueta Avila 21527
  Astrid Glauser 21299
@@ -8,8 +11,8 @@ public class Radiou implements Radio {
     
     private boolean encendida = false;
     private boolean tipoSenal =true;
-    private float AMactual=530 ;
-    private float FMactual=(float) 87.9;
+    private float AMactual=530F;
+    private float FMactual= 87.9F;
     private String[] emisorasGuardadas=new String[12];
   
 
@@ -45,11 +48,11 @@ public class Radiou implements Radio {
        String emisoraString = emisorasGuardadas[numBoton]; 
         if(emisoraString != null){
             float emisora = Float.valueOf(emisorasGuardadas[numBoton]); 
-        if(emisora >=540){//valor minimo de AM
-            AMactual = (int) emisora;
+        if(emisora >=540F){//valor minimo de AM
+            AMactual =  emisora;
             this.tipoSenal = true;
             message += emisora + "AM";
-        }else if(emisora >= 87.9){
+        }else if(emisora >= 87.9F){
             FMactual = emisora;
             this.tipoSenal = false;
             message += emisora + "FM";
@@ -84,11 +87,15 @@ public class Radiou implements Radio {
     }
     else{
     
-        if(FMactual==107.9){
-            FMactual=(float)87.9;
+        if(FMactual>107.7){
+            
+         
+            FMactual= 87.9f;
+            
+          
         }
       else{
-        FMactual += 0.2; 
+        FMactual += 0.2f; 
       }
     }
 }
@@ -96,19 +103,19 @@ public class Radiou implements Radio {
     public void bajarEmisora(){//retroceder emisora
          if(tipoSenal){
             if(AMactual!=530){
-                AMactual -= 10;
+                AMactual=(int)AMactual -10;
 
             }else{
-                AMactual=1610;
+                AMactual=(int)1610;
             }
    
    
         }
         else{
-            if(FMactual!=87.9){
-                FMactual -= 0.2;
+            if(FMactual<87.9){
+              FMactual = (FMactual-0.2f);
             }else{
-                 FMactual=(float)107.9;
+                 FMactual=107.9f;
             }
         
        
@@ -120,8 +127,11 @@ public class Radiou implements Radio {
         float frecuencia = 0;
         if(tipoSenal){//si es am el modo devuelve la am, de lo contratio devuelve fm
             frecuencia = AMactual;
+            
         }else{
-            frecuencia = FMactual;
+          DecimalFormat decimalFormat = new DecimalFormat("#.##");
+          frecuencia = Float.valueOf(decimalFormat.format(FMactual));
+          
         }
         return frecuencia;
     }
@@ -130,11 +140,11 @@ public class Radiou implements Radio {
     public String seleccionarEmisoraGuardada(int numBoton) {//seleccionar una emisora guardada y colocarla como actual, en caso de no haber indica que no hay freceuncia guardada
         String message = "Sintonizando ";
         float emisora = Float.valueOf(emisorasGuardadas[numBoton]); 
-        if(emisora >=540){//valor minimo de AM
+        if(emisora >=540F){//valor minimo de AM
             AMactual = (int) emisora;
             this.tipoSenal = true;
             message += emisora + "AM";
-        }else if(emisora >= 87.9){
+        }else if(emisora >= 87.9F){
             FMactual = emisora;
             this.tipoSenal = false;
             message += emisora + "FM";
@@ -146,8 +156,8 @@ public class Radiou implements Radio {
     }
 
     @Override
-    public String cambiarSenal(Boolean opciuon) {//cambia de senal, recie el boolean del tipo a cambiar; true es am
-        this.tipoSenal = opciuon;
+    public String cambiarSenal(Boolean opcion) {//cambia de senal, recie el boolean del tipo a cambiar; true es am
+        this.tipoSenal = opcion;
         String message = "Se ha cambiado a ";
         if (tipoSenal) {
             message += "AM";
