@@ -112,7 +112,7 @@ public class Radiou implements Radio {
    
         }
         else{
-            if(FMactual<87.9){
+            if(FMactual>=87.9999){
               FMactual = (FMactual-0.2f);
             }else{
                  FMactual=107.9f;
